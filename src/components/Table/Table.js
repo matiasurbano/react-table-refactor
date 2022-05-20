@@ -10,7 +10,15 @@ export default function Table({ columns, data }) {
   } = useTable(
     {
       columns,
-      data
+      data,
+      initialState: {
+        sortBy: [
+          {
+            id: "siteId",
+            asc: true
+          }
+        ]
+      }
     },
     useSortBy
   );

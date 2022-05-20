@@ -8,56 +8,57 @@ export default function App() {
     () => [
       {
         Header: "Site Id",
-        accessor: "siteId"
+        accessor: "siteId",
+        disableSortBy: false
       },
       {
         Header: "Name",
-        accessor: "name"
+        accessor: "name",
+        disableSortBy: false
       },
       {
         Header: "Address",
-        accessor: "address"
+        accessor: "address",
+        disableSortBy: true
       },
       {
         Header: "Phone",
-        accessor: "phone"
+        accessor: "phone",
+        disableSortBy: true
       },
       {
         Header: "Locales",
-        accessor: "locales"
+        accessor: "locales",
+        disableSortBy: false
       },
       {
         Header: "PI name",
-        accessor: "piName"
+        accessor: "piName",
+        disableSortBy: true
       },
       {
         Header: "PI-Phone",
-        accessor: "piPhone"
+        accessor: "piPhone",
+        disableSortBy: true
       },
       {
         Header: "Default",
-        accessor: "default"
+        accessor: "default",
+        disableSortBy: true
       },
       {
         Header: "Status",
-        accessor: "status"
+        accessor: "status",
+        disableSortBy: false
       },
       {
         Header: "",
-        accessor: "action"
+        accessor: "action",
+        disableSortBy: true
       }
     ],
     []
   );
-  // const data = React.useMemo(
-  //   () => [
-  //     { siteId: "123123", name: "MikeA", address: "StreetA 1234" },
-  //     { siteId: "123125", name: "MikeB", address: "StreetB 1234" },
-  //     { siteId: "123126", name: "MikeC", address: "StreetC 1234" },
-  //     { siteId: "1231276", name: "MikeD", address: "StreetD 1234" }
-  //   ],
-  //   []
-  // );
 
   const data = React.useMemo(() => makeData(5), []);
 
