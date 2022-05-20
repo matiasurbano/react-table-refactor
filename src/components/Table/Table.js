@@ -86,7 +86,7 @@ export default function Table({ columns, data }) {
 
   return (
     <>
-      <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+      <Box sx={{ float: "right" }}>
         <InputSearch
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={state.globalFilter}
