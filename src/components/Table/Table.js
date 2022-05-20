@@ -1,4 +1,8 @@
 import { useTable, useSortBy } from "react-table";
+import { Chip, TableCell, Tooltip } from "@mui/material";
+import { countryCodeEmoji } from "country-code-emoji";
+import LensIcon from "@mui/icons-material/Lens";
+
 export default function Table({ columns, data }) {
   const {
     getTableProps,
@@ -22,6 +26,36 @@ export default function Table({ columns, data }) {
     useSortBy
   );
 
+  const getRowCellByType = (type, value) => {
+    switch (type) {
+      case "address":
+        const flag = countryCodeEmoji(value ? value.toUpperCase() : ""); // returns '🇺🇸'
+        return (
+          <Tooltip title={value}>
+            <Chip label={flag}></Chip>
+          </Tooltip>
+        );
+      case "phone":
+        return (
+          <Tooltip title={value}>
+            <Chip label="📞"></Chip>
+          </Tooltip>
+        );
+      case "status":
+        return (
+          <Tooltip title={value} sx={{ paddingLeft: "10px" }}>
+            {value === "active" ? (
+              <LensIcon fontSize="10px" color="success" />
+            ) : (
+              <LensIcon fontSize="10px" color="error" />
+            )}
+          </Tooltip>
+        );
+      default:
+        return <span>{value}</span>;
+    }
+  };
+
   return (
     <>
       <table {...getTableProps()}>
@@ -44,9 +78,11 @@ export default function Table({ columns, data }) {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
+                {row.cells.map((cell, idx) => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <TableCell key={idx}>
+                      {getRowCellByType(cell.column.id, cell.value)}
+                    </TableCell>
                   );
                 })}
               </tr>

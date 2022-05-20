@@ -1,6 +1,5 @@
 import React from "react";
 import Table from "../Table";
-import PhoneIcon from "@mui/icons-material/Phone";
 import makeData from "../../services/dataService";
 
 export default function App() {
@@ -60,7 +59,7 @@ export default function App() {
     []
   );
 
-  const data = React.useMemo(() => makeData(5), []);
+  const data = React.useMemo(() => makeData(20), []);
 
   return (
     <>
