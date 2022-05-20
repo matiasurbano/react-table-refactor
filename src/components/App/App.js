@@ -65,7 +65,6 @@ export default function App() {
   return (
     <>
       <h1>ReactTable Refactor</h1>
-      <PhoneIcon color="inherit" />
       <Table columns={columns} data={data} />
     </>
   );

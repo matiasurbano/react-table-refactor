@@ -19,7 +19,7 @@ const newRecord = () => {
     piName: "",
     piPhone: "N/A / N/A",
     default: "",
-    status: statusChance > 0.66
+    status: statusChance > 0.66 ? "active" : "inactive"
   };
 };
 

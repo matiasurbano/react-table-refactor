@@ -1,11 +1,19 @@
 import styled from "@emotion/styled";
 
 export default styled.div`
-  padding: 1rem;
+  /* padding: 1rem; */
+  display: block;
+  max-width: 100%;
 
   table {
+    width: 100%;
     border-spacing: 0;
-    border: 1px solid black;
+
+    thead {
+      th {
+        font-weight: normal;
+      }
+    }
 
     tr {
       :last-child {
@@ -19,8 +27,8 @@ export default styled.div`
     td {
       margin: 0;
       padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
+      border-bottom: 1px solid rgba(224, 224, 224, 1);
+      text-align: left;
 
       :last-child {
         border-right: 0;
