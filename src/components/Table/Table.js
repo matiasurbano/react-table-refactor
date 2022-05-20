@@ -1,15 +1,41 @@
-import { useTable, useSortBy } from "react-table";
+import React from "react";
+import { useTable, useSortBy, useGlobalFilter } from "react-table";
 import { Chip, TableCell, Tooltip } from "@mui/material";
 import { countryCodeEmoji } from "country-code-emoji";
 import LensIcon from "@mui/icons-material/Lens";
+import InputSearch from "../InputSearch";
+import matchSorter from "match-sorter";
+
+function fuzzyTextFilterFn(rows, id, filterValue) {
+  return matchSorter(rows, filterValue, { keys: [(row) => row.values[id]] });
+}
 
 export default function Table({ columns, data }) {
+  const filterTypes = React.useMemo(
+    () => ({
+      fuzzyText: fuzzyTextFilterFn,
+      text: (rows, id, filterValue) => {
+        return rows.filter((row) => {
+          const rowValue = row.values[id];
+          return rowValue !== undefined
+            ? String(rowValue)
+                .toLowerCase()
+                .startsWith(String(filterValue).toLowerCase())
+            : true;
+        });
+      }
+    }),
+    []
+  );
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
-    prepareRow
+    prepareRow,
+    state,
+    preGlobalFilteredRows,
+    setGlobalFilter
   } = useTable(
     {
       columns,
@@ -21,8 +47,10 @@ export default function Table({ columns, data }) {
             asc: true
           }
         ]
-      }
+      },
+      filterTypes
     },
+    useGlobalFilter,
     useSortBy
   );
 
@@ -58,6 +86,12 @@ export default function Table({ columns, data }) {
 
   return (
     <>
+      <InputSearch
+        preGlobalFilteredRows={preGlobalFilteredRows}
+        globalFilter={state.globalFilter}
+        setGlobalFilter={setGlobalFilter}
+      />
+
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (

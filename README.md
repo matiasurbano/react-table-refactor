@@ -1,2 +1,3 @@
 # react-table-refactor
-Created with CodeSandbox
+
+React Table refactor using ReactTable
