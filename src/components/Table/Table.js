@@ -1,6 +1,6 @@
 import React from "react";
 import { useTable, useSortBy, useGlobalFilter } from "react-table";
-import { Chip, TableCell, Tooltip } from "@mui/material";
+import { Chip, TableCell, Tooltip, Box } from "@mui/material";
 import { countryCodeEmoji } from "country-code-emoji";
 import LensIcon from "@mui/icons-material/Lens";
 import InputSearch from "../InputSearch";
@@ -86,11 +86,13 @@ export default function Table({ columns, data }) {
 
   return (
     <>
-      <InputSearch
-        preGlobalFilteredRows={preGlobalFilteredRows}
-        globalFilter={state.globalFilter}
-        setGlobalFilter={setGlobalFilter}
-      />
+      <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+        <InputSearch
+          preGlobalFilteredRows={preGlobalFilteredRows}
+          globalFilter={state.globalFilter}
+          setGlobalFilter={setGlobalFilter}
+        />
+      </Box>
 
       <table {...getTableProps()}>
         <thead>

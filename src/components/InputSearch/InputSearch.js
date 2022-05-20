@@ -19,7 +19,7 @@ export default function InputSearch({
       <SearchIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
       <TextField
         id="input-search"
-        label="Filter by Site Id, Name and more"
+        label="Filter by Site Id, Name, Telephone ..."
         variant="standard"
         value={value}
         onChange={(e) => {
